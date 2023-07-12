@@ -17,15 +17,6 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          const Expanded(
-            flex: 1,
-            child: Center(
-                // child: Image.asset(
-                //   sbibanner,
-                //   width: twohundred,
-                // ),
-                ),
-          ),
           Expanded(
             flex: 1,
             child: Container(

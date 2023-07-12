@@ -142,7 +142,6 @@ class _WatchListScreenState extends State<WatchListScreen> {
                   ),
                 ),
               )),
-          // Expanded(flex: int.parse(six.toString()), child: const ChartCard()),
         ],
       );
     });

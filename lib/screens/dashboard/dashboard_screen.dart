@@ -58,7 +58,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         body: Stack(
           children: [
             Scaffold(
-              // key: SingletonScaffold().scaffoldKey,
               body: Padding(
                 padding: const EdgeInsets.only(left: 145),
                 child: widget.child,
