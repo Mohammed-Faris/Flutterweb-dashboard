@@ -76,6 +76,7 @@ const String orderloc = "${imagespath}orders_select_dark@3x.png";
 const String walletloc = "${imagespath}portfolio_select_dark@3x.png";
 const String logoutloc = "${imagespath}logout.svg";
 const String sbibanner = "${imagespath}sbi_banner.png";
+const String settings = "${imagespath}settings.svg";
 const String networkimageloc =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbXzqZwlbLCY-mzcUNodOqeVF-rpSb9KE0WEB6OtgxtHibeANXK2Hzw_y9GMNPpX9Orb0&usqp=CAU";
 
@@ -97,3 +98,214 @@ const Color primarycolor = Color(0xFF5E50AD);
 //font weight
 
 FontWeight boldfont = FontWeight.bold;
+
+// tabs
+const String overview = "Overview";
+const String technical = "Technical";
+const String futures = 'Futures';
+const String options = "Options";
+const String news = "News";
+
+List<Tab> tablist = [
+  const Tab(text: overview),
+  const Tab(text: technical),
+  const Tab(text: futures),
+  const Tab(text: options),
+  const Tab(text: news),
+];
+
+TabBarView tabbarview = TabBarView(children: [
+  Row(
+    children: [
+      Expanded(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 60,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Market Depth',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      const Center(
+                        child: Text('BID'),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Table(
+                        defaultColumnWidth: const FixedColumnWidth(80.0),
+                        children: const [
+                          TableRow(
+                            children: [
+                              Text('Bid',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.grey)),
+                              Text('Orders',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.grey)),
+                              Text('Qty',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.grey))
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              Text('1000',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.green)),
+                              Text('0',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.green)),
+                              Text('187.25',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.green))
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                const VerticalDivider(),
+                Expanded(
+                  child: Column(
+                    children: [
+                      const Center(
+                        child: Text('OFFER'),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Table(
+                        defaultColumnWidth: const FixedColumnWidth(80.0),
+                        children: const [
+                          TableRow(
+                            children: [
+                              Text('Offer',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.grey)),
+                              Text('Orders',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.grey)),
+                              Text('Qty',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.grey))
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              Text('1000',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.red)),
+                              Text('0',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.red)),
+                              Text('187.25',
+                                  style: TextStyle(
+                                      fontSize: 14.0, color: Colors.red))
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+      const VerticalDivider(
+        color: Colors.grey,
+        width: 30,
+      ),
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 60,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Details',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+            Table(
+              defaultColumnWidth: const FixedColumnWidth(80.0),
+              children: const [
+                TableRow(
+                  children: [
+                    Text('Prev.Close',
+                        style: TextStyle(fontSize: 14.0, color: Colors.grey)),
+                    Text('Open',
+                        style: TextStyle(fontSize: 14.0, color: Colors.grey)),
+                    Text('High',
+                        style: TextStyle(fontSize: 14.0, color: Colors.grey)),
+                    Text('Low',
+                        style: TextStyle(fontSize: 14.0, color: Colors.grey))
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text('1000',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text('0',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text('187.25',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text('187.25',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ))
+                  ],
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    ],
+  ),
+  const Center(
+    child: Text(technical),
+  ),
+  const Center(
+    child: Text(futures),
+  ),
+  const Center(
+    child: Text(options),
+  ),
+  const Center(
+    child: Text(news),
+  ),
+]);

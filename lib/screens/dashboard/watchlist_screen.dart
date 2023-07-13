@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:web_evaluation/bloc/bloc/watchlist/watchlist_bloc.dart';
+import 'package:web_evaluation/models/watchlist_model.dart';
+import 'package:web_evaluation/screens/dashboard/chart_screen.dart';
 import 'package:web_evaluation/screens/dashboard/contactlist.dart';
 import 'package:web_evaluation/widgets/logout.dart';
 import 'package:web_evaluation/widgets/text_widget.dart';
@@ -15,12 +18,17 @@ class WatchListScreen extends StatefulWidget {
   State<WatchListScreen> createState() => _WatchListScreenState();
 }
 
-class _WatchListScreenState extends State<WatchListScreen> {
+class _WatchListScreenState extends State<WatchListScreen>
+    with SingleTickerProviderStateMixin {
   List<dynamic> searchedlist = [];
   List<Map<String, dynamic>> dropdownlist = [];
   int selectedcontactValue = 0;
 
+  List<WatchListModel> allList = [];
+  late TabController _tabController;
+
   TextEditingController searchnamecontroller = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -48,6 +56,10 @@ class _WatchListScreenState extends State<WatchListScreen> {
         );
       } else if (state is WatchListLoadedState) {
         searchedlist = state.watchlistdata;
+
+        allList = state.watchlistdata;
+        _tabController =
+            TabController(length: state.watchlistdata.length, vsync: this);
         dropdownlist = state.dropdownlist;
       } else if (state is WatchListSearchLoadingState) {
       } else if (state is WatchlistSearchedState) {
@@ -68,26 +80,45 @@ class _WatchListScreenState extends State<WatchListScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: one / six * MediaQuery.of(context).size.width,
-                        child: DropdownButtonFormField(
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width:
+                                one / six * MediaQuery.of(context).size.width,
+                            child: DropdownButtonFormField(
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none),
+                                ),
+                                value: selectedcontactValue,
+                                items: dropdownlist
+                                    .map((e) => DropdownMenuItem(
+                                          value: e["value"],
+                                          child: Text(e["text"].toString()),
+                                        ))
+                                    .toList(),
+                                onChanged: ((value) {
+                                  selectedcontactValue =
+                                      int.parse(value.toString());
+                                  BlocProvider.of<WatchlistBloc>(context).add(
+                                      WatchListFilterEvent(
+                                          selectedcontactValue));
+                                })),
+                          ),
+                          GestureDetector(
+                            // onTap: () => showDialog<String>(
+                            //     context: context,
+                            //     builder: (BuildContext context) => SortWidget(
+                            //         allList: allList,
+                            //         controller: _tabController)),
+                            child: SizedBox(
+                              child: SvgPicture.asset(
+                                settings,
+                                width: 20,
+                              ),
                             ),
-                            value: selectedcontactValue,
-                            items: dropdownlist
-                                .map((e) => DropdownMenuItem(
-                                      value: e["value"],
-                                      child: Text(e["text"].toString()),
-                                    ))
-                                .toList(),
-                            onChanged: ((value) {
-                              selectedcontactValue =
-                                  int.parse(value.toString());
-                              BlocProvider.of<WatchlistBloc>(context).add(
-                                  WatchListFilterEvent(selectedcontactValue));
-                            })),
+                          ),
+                        ],
                       ),
                       Padding(
                         padding:
@@ -142,6 +173,7 @@ class _WatchListScreenState extends State<WatchListScreen> {
                   ),
                 ),
               )),
+          const Expanded(flex: 6, child: ChartScreen()),
         ],
       );
     });

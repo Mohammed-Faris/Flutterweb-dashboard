@@ -21,4 +21,6 @@ class WatchListModel {
     data['url'] = url;
     return data;
   }
+
+  sort(int Function(dynamic a, dynamic b) param0) {}
 }

@@ -42,3 +42,15 @@ class WatchListToggled extends WatchlistEvent {
     this.isToggled,
   );
 }
+
+class OnSortWidgetEvent extends WatchlistEvent {
+  final List<WatchListModel> filteredusers;
+
+  final int currentTabIndex;
+
+  final String? selectedSort;
+  const OnSortWidgetEvent(
+      {required this.filteredusers,
+      required this.currentTabIndex,
+      this.selectedSort});
+}

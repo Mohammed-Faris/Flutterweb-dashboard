@@ -54,3 +54,13 @@ class WatchlistToggledState extends WatchlistState {
     this.isToggled = false,
   });
 }
+
+class FilterdState extends WatchlistState {
+  final List<WatchListModel> filteredusers;
+  final int currentTabIndex;
+  final String? selectedSort;
+  FilterdState(
+      {required this.filteredusers,
+      required this.currentTabIndex,
+      this.selectedSort});
+}

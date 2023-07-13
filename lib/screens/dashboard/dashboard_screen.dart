@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:web_evaluation/bloc/bloc/internet/bloc/internet_bloc.dart';
 import 'package:web_evaluation/bloc/bloc/watchlist/watchlist_bloc.dart';
+import 'package:web_evaluation/constants/singleton.dart';
 import 'package:web_evaluation/screens/overlay/overlay_screen.dart';
 import 'package:web_evaluation/widgets/logout.dart';
 
@@ -59,7 +60,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           children: [
             Scaffold(
               body: Padding(
-                padding: const EdgeInsets.only(left: 145),
+                key: SingletonScaffold().scaffoldKey,
+                padding: const EdgeInsets.only(left: 70),
                 child: widget.child,
               ),
               endDrawer: BlocConsumer<WatchlistBloc, WatchlistState>(
@@ -96,7 +98,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 ));
               },
               child: SizedBox(
-                width: hover == true ? 200 : 141,
+                width: hover == true ? 200 : 70,
                 child: NavigationRail(
                   backgroundColor: deeppurple,
                   extended: hover,
