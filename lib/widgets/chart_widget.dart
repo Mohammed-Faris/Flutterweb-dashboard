@@ -15,6 +15,7 @@ class ChartWidget extends StatefulWidget {
 }
 
 class _ChartWidgetState extends State<ChartWidget> {
+  bool isToggled = false;
   late List<ChartSampleData> _chartData;
   late TrackballBehavior _trackballBehavior;
   @override

@@ -44,7 +44,7 @@ class WatchListToggled extends WatchlistEvent {
 }
 
 class OnSortWidgetEvent extends WatchlistEvent {
-  final List<WatchListModel> filteredusers;
+  final List<List<WatchListModel>> filteredusers;
 
   final int currentTabIndex;
 

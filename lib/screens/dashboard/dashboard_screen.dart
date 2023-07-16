@@ -149,18 +149,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         GoRouter.of(context).go('/$wallet');
         break;
       case 3:
+        if (SingletonScaffold().isEndrawerOpen) {
+          Navigator.pop(context);
+        }
         showDialog<String>(
             context: context,
             builder: (BuildContext context) => const LogoutWidget());
         break;
-      // case 3:
-      //   if (SingletonScaffold().isEndrawerOpen) {
-      //     Navigator.pop(context);
-      //   }
-      // showDialog<String>(
-      //     context: context,
-      //     builder: (BuildContext context) => const LogoutWidget());
-      // break;
     }
   }
 

@@ -71,11 +71,11 @@ class SortWidget extends StatelessWidget {
                     const Spacer(),
                     TextButton(
                       onPressed: () {
-                        // context.read<WatchlistBloc>().add(OnSortWidgetEvent(
-                        //       currentTabIndex: controller.index,
-                        //       selectedSort: 'asc',
-                        //       filteredusers: allList,
-                        //     ));
+                        context.read<WatchlistBloc>().add(OnSortWidgetEvent(
+                              currentTabIndex: controller.index,
+                              selectedSort: 'asc',
+                              filteredusers: allList,
+                            ));
                       },
                       child: Text(
                         '0 \u{2193} 9',
@@ -91,11 +91,11 @@ class SortWidget extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        // context.read<WatchlistBloc>().add(OnSortWidgetEvent(
-                        //       currentTabIndex: controller.index,
-                        //       selectedSort: 'dsc',
-                        //       filteredusers: allList,
-                        //     ));
+                        context.read<WatchlistBloc>().add(OnSortWidgetEvent(
+                              currentTabIndex: controller.index,
+                              selectedSort: 'dsc',
+                              filteredusers: allList,
+                            ));
                       },
                       child: Text(
                         '9 \u{2191} 0',

@@ -99,6 +99,28 @@ const Color primarycolor = Color(0xFF5E50AD);
 
 FontWeight boldfont = FontWeight.bold;
 
+//
+const String sbin = "SBIN";
+const String statebankofindia = "STATE BANK OF INDIA";
+const String nse = "NSE";
+
+//overlayproducts
+
+const String stkprice = "149.00";
+const String stkpricechanges = "3.00(+1.80%)";
+const String product = "Product";
+const String paytodp = "Pay full and get share in your DP account";
+const String delivery = "Delivery";
+const String intraday = "Intraday";
+const String emargin = 'E-Margin';
+const String cover = "Cover";
+const String quantity = "Quantity";
+const String price = 'Price';
+const String mktPrice = "Mkt Price";
+const String disclosedqty = 'Disclosed Quantity';
+const String stplosstriggerprice = "Stoploss Trigger Price";
+const List overlayproduct = [delivery, intraday, emargin, cover];
+
 // tabs
 const String overview = "Overview";
 const String technical = "Technical";

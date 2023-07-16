@@ -56,7 +56,7 @@ class WatchlistToggledState extends WatchlistState {
 }
 
 class FilterdState extends WatchlistState {
-  final List<WatchListModel> filteredusers;
+  final List<List<WatchListModel>> filteredusers;
   final int currentTabIndex;
   final String? selectedSort;
   FilterdState(

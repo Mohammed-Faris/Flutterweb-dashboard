@@ -62,6 +62,7 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
                 sortedgrouplist.add(clist[i]);
               }
             }
+            slist = sortedgrouplist;
           }
 
           emit(WatchlistSearchedState(slist));
@@ -88,7 +89,8 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
             filteredusers: event.filteredusers.map((e) {
               if (event.currentTabIndex == event.filteredusers.indexOf(e)) {
                 return e
-                  ..sort((a, b) => int.parse(a.id).compareTo(int.parse(b.id)));
+                  ..sort((a, b) =>
+                      int.parse(a.id ?? "").compareTo(int.parse(b.id ?? "")));
               }
               return e;
             }).toList(),
@@ -99,7 +101,8 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
             filteredusers: event.filteredusers.map((e) {
               if (event.currentTabIndex == event.filteredusers.indexOf(e)) {
                 return e
-                  ..sort((a, b) => int.parse(b.id).compareTo(int.parse(a.id)));
+                  ..sort((a, b) =>
+                      int.parse(b.id ?? "").compareTo(int.parse(a.id ?? "")));
               }
               return e;
             }).toList(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:universal_html/html.dart';
+import 'package:universal_html/html.dart' as html;
+import 'package:web_evaluation/constants/singleton.dart';
 import 'package:web_evaluation/screens/dashboard/dashboard_screen.dart';
 import 'package:web_evaluation/screens/dashboard/watchlist_screen.dart';
 import 'package:web_evaluation/screens/login/login_screen.dart';
@@ -36,60 +37,60 @@ class Routers {
         },
       ),
       ShellRoute(
-          navigatorKey: _shellNavigatorKey,
-          builder: (BuildContext context, GoRouterState state, Widget child) {
-            return DashBoardScreen(child);
-          },
-          routes: <RouteBase>[
-            GoRoute(
-              path: watchlistroute,
-              pageBuilder: (context, state) {
-                return NoTransitionPage(
-                  key: state.pageKey,
-                  child: const WatchListScreen(),
-                );
-              },
-            ),
-            GoRoute(
-              path: walletroute,
-              pageBuilder: (context, state) {
-                return NoTransitionPage(
-                  key: state.pageKey,
-                  child: const WalletScreen(),
-                );
-              },
-            ),
-            GoRoute(
-              path: orderroute,
-              pageBuilder: (context, state) {
-                return NoTransitionPage(
-                  key: state.pageKey,
-                  child: const OrderScreen(),
-                );
-              },
-            ),
-          ])
+        navigatorKey: _shellNavigatorKey,
+        builder: (BuildContext context, GoRouterState state, Widget child) {
+          return DashBoardScreen(child);
+        },
+        routes: <RouteBase>[
+          GoRoute(
+            path: watchlistroute,
+            pageBuilder: (context, state) {
+              return NoTransitionPage(
+                key: state.pageKey,
+                child: const WatchListScreen(),
+              );
+            },
+          ),
+          GoRoute(
+            path: walletroute,
+            pageBuilder: (context, state) {
+              return NoTransitionPage(
+                key: state.pageKey,
+                child: const WalletScreen(),
+              );
+            },
+          ),
+          GoRoute(
+            path: orderroute,
+            pageBuilder: (context, state) {
+              return NoTransitionPage(
+                key: state.pageKey,
+                child: const OrderScreen(),
+              );
+            },
+          ),
+        ],
+      ),
     ],
-  );
-
-  dynamic redirect(context, state) async {
-    late String authtokens;
-    // if (SingletonScaffold().isEndrawerOpen) {
-    //   GoRouter.of(_rootNavigatorKey.currentContext!).pop();
-    // }
-
-    if (window.localStorage.containsKey(authToken)) {
-      authtokens = window.localStorage[authToken]!;
-
-      if (authtokens.isEmpty) {
-        return loginroute;
-      } else if (state.matchedLocation == loginroute ||
-          state.matchedLocation == '/') {
-        return watchlistroute;
+    redirect: (context, state) async {
+      late String authtokens;
+      if (SingletonScaffold().isEndrawerOpen) {
+        GoRouter.of(_rootNavigatorKey.currentContext!).pop();
       }
-    } else {
-      return loginroute;
-    }
-    return null;
-  }
+
+      if (html.window.localStorage.containsKey(authToken)) {
+        authtokens = html.window.localStorage[authToken]!;
+
+        if (authtokens.isEmpty) {
+          return loginroute;
+        } else if (state.matchedLocation == loginroute ||
+            state.matchedLocation == '/') {
+          return watchlistroute;
+        }
+      } else {
+        return loginroute;
+      }
+      return null;
+    },
+  );
 }
