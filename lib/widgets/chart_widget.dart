@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:web_evaluation/constants/chart_sample_data.dart';
+import 'package:web_evaluation/bloc/bloc/watchlist/watchlist_bloc.dart';
 import 'package:web_evaluation/constants/singleton.dart';
 
 import '../constants/app_constants.dart';
+import '../constants/chart_sample_data.dart';
 import 'text_widget.dart';
 
-class ChartWidget extends StatefulWidget {
-  const ChartWidget({super.key});
+class ChartDisplayScreen extends StatefulWidget {
+  const ChartDisplayScreen({super.key});
 
   @override
-  State<ChartWidget> createState() => _ChartWidgetState();
+  State<ChartDisplayScreen> createState() => _ChartDisplayScreenState();
 }
 
-class _ChartWidgetState extends State<ChartWidget> {
-  bool isToggled = false;
+class _ChartDisplayScreenState extends State<ChartDisplayScreen> {
   late List<ChartSampleData> _chartData;
   late TrackballBehavior _trackballBehavior;
   @override
@@ -35,7 +36,7 @@ class _ChartWidgetState extends State<ChartWidget> {
           child: Row(
             children: [
               Expanded(
-                  flex: 3,
+                  flex: int.parse(three.toString()),
                   child: Padding(
                     padding: const EdgeInsets.only(left: fifteen),
                     child: TextWidget(
@@ -56,13 +57,17 @@ class _ChartWidgetState extends State<ChartWidget> {
               const Icon(Icons.expand),
               const VerticalDivider(),
               Expanded(
-                  flex: 1,
+                  flex: int.parse(one.toString()),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       ElevatedButton(
                         onPressed: () {
+                          // SingletonScaffold().isBuyButtonActive = true;
                           SingletonScaffold().openEndDrawer();
+                          context
+                              .read<WatchlistBloc>()
+                              .add(WatchListToggled(false));
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: greencolor, // Background color
@@ -71,7 +76,11 @@ class _ChartWidgetState extends State<ChartWidget> {
                       ),
                       ElevatedButton(
                         onPressed: () {
+                          // SingletonScaffold().isBuyButtonActive = false;
                           SingletonScaffold().openEndDrawer();
+                          context
+                              .read<WatchlistBloc>()
+                              .add(WatchListToggled(true));
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: redcolor, // Background color

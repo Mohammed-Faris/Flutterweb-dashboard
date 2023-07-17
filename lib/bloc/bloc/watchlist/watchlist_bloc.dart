@@ -76,39 +76,50 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
         hover: event.hover,
       ));
     });
-    on<WatchListToggled>((event, emit) async {
+    on<WatchListToggled>((event, emit) {
+      print('toggle ${event.isToggled}');
       emit(WatchlistToggledState(
         isToggled: event.isToggled,
       ));
     });
 
-    on<OnSortWidgetEvent>((event, emit) {
-      emit(WatchlistLoadingEvent() as WatchlistState);
-      if (event.selectedSort == 'asc') {
-        emit(FilterdState(
-            filteredusers: event.filteredusers.map((e) {
-              if (event.currentTabIndex == event.filteredusers.indexOf(e)) {
-                return e
-                  ..sort((a, b) =>
-                      int.parse(a.id ?? "").compareTo(int.parse(b.id ?? "")));
-              }
-              return e;
-            }).toList(),
-            currentTabIndex: event.currentTabIndex,
-            selectedSort: event.selectedSort));
-      } else if (event.selectedSort == 'dsc') {
-        emit(FilterdState(
-            filteredusers: event.filteredusers.map((e) {
-              if (event.currentTabIndex == event.filteredusers.indexOf(e)) {
-                return e
-                  ..sort((a, b) =>
-                      int.parse(b.id ?? "").compareTo(int.parse(a.id ?? "")));
-              }
-              return e;
-            }).toList(),
-            currentTabIndex: event.currentTabIndex,
-            selectedSort: event.selectedSort));
-      }
+    on<WatchlistChangeColorEvent>((event, emit) async {
+      emit(WatchlistChangeColorState(
+        btnName: event.btnName,
+      ));
     });
+
+    on<OnSortWidgetEvent>((event, emit) {
+      // emit(WatchlistLoadingEvent() as WatchlistState);
+      sortUsers(event.selectedSort ?? "", event.filteredusers);
+
+      var sortedUsers =
+          sortUsers(event.selectedSort ?? "", event.filteredusers);
+
+      emit(FilterdState(
+          filteredusers: sortedUsers ?? [],
+          currentTabIndex: event.currentTabIndex,
+          selectedSort: event.selectedSort));
+    });
+  }
+
+  List<WatchListModel>? sortUsers(
+      String sortType, List<WatchListModel>? users) {
+    List<WatchListModel>? sortedUsers;
+
+    if (users != null) {
+      if (sortType == 'asc') {
+        users.sort(
+            (a, b) => int.parse(a.id ?? "").compareTo(int.parse(b.id ?? "")));
+        sortedUsers = users;
+      } else if (sortType == 'dsc') {
+        users.sort(
+            (b, a) => int.parse(a.id ?? "").compareTo(int.parse(b.id ?? "")));
+
+        sortedUsers = users;
+      }
+    }
+
+    return sortedUsers;
   }
 }

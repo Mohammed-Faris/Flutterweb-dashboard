@@ -1,3 +1,4 @@
+// import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:universal_html/html.dart' as html;
@@ -17,7 +18,7 @@ final GlobalKey<NavigatorState> _shellNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 class Routers {
-  late final GoRouter router = GoRouter(
+  final GoRouter router = GoRouter(
     errorBuilder: (context, state) => const PageNotFound(),
     navigatorKey: _rootNavigatorKey,
     routes: <RouteBase>[

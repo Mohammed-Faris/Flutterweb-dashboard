@@ -7,6 +7,7 @@ import 'package:web_evaluation/models/watchlist_model.dart';
 import 'package:web_evaluation/screens/dashboard/chart_screen.dart';
 import 'package:web_evaluation/screens/dashboard/contactlist.dart';
 import 'package:web_evaluation/widgets/logout.dart';
+import 'package:web_evaluation/widgets/sort.dart';
 import 'package:web_evaluation/widgets/text_widget.dart';
 
 import '../../constants/app_constants.dart';
@@ -19,13 +20,14 @@ class WatchListScreen extends StatefulWidget {
 }
 
 class _WatchListScreenState extends State<WatchListScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   List<dynamic> searchedlist = [];
   List<Map<String, dynamic>> dropdownlist = [];
   int selectedcontactValue = 0;
 
   List<WatchListModel> allList = [];
   late TabController _tabController;
+  late final List<List<WatchListModel>> filteredusers = [];
 
   TextEditingController searchnamecontroller = TextEditingController();
 
@@ -58,6 +60,7 @@ class _WatchListScreenState extends State<WatchListScreen>
         searchedlist = state.watchlistdata;
 
         allList = state.watchlistdata;
+
         _tabController =
             TabController(length: state.watchlistdata.length, vsync: this);
         dropdownlist = state.dropdownlist;
@@ -106,11 +109,12 @@ class _WatchListScreenState extends State<WatchListScreen>
                                 })),
                           ),
                           GestureDetector(
-                            // onTap: () => showDialog<String>(
-                            //     context: context,
-                            //     builder: (BuildContext context) => SortWidget(
-                            //         allList: allList,
-                            //         controller: _tabController)),
+                            onTap: () => showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => SortWidget(
+                                      allList: allList,
+                                      controller: _tabController,
+                                    )),
                             child: SizedBox(
                               child: SvgPicture.asset(
                                 settings,

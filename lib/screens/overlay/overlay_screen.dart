@@ -7,6 +7,7 @@ import '../../widgets/text_widget.dart';
 // ignore: must_be_immutable
 class OverlayScreen extends StatelessWidget {
   bool isToggled;
+
   OverlayScreen({super.key, required this.isToggled});
 
   @override
@@ -16,7 +17,7 @@ class OverlayScreen extends StatelessWidget {
       width: 500,
       child: Padding(
         padding: const EdgeInsets.only(
-            top: thirty, bottom: thirty, left: thirty, right: eighteen),
+            top: thirty, bottom: thirty, left: eighteen, right: 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,24 +31,27 @@ class OverlayScreen extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isToggled ? Colors.red : Colors.green,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  side: const BorderSide(
-                    style: BorderStyle.none,
+            Padding(
+              padding: const EdgeInsets.only(top: 136),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: isToggled ? Colors.red : Colors.green,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    side: const BorderSide(
+                      style: BorderStyle.none,
+                    ),
                   ),
-                ),
-                onPressed: () {},
-                child: Text(
-                  isToggled ? 'Sell' : 'Buy',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                  onPressed: () {},
+                  child: Text(
+                    isToggled ? 'Sell' : 'Buy',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

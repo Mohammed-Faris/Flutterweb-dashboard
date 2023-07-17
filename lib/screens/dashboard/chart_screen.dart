@@ -17,7 +17,7 @@ class ChartScreen extends StatelessWidget {
           child: Container(
             height: MediaQuery.of(context).size.height * 0.6,
             color: Colors.white,
-            child: const ChartWidget(),
+            child: const ChartDisplayScreen(),
           ),
         ),
         Expanded(

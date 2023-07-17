@@ -43,8 +43,15 @@ class WatchListToggled extends WatchlistEvent {
   );
 }
 
+class WatchlistChangeColorEvent extends WatchlistEvent {
+  String btnName;
+  WatchlistChangeColorEvent({
+    required this.btnName,
+  });
+}
+
 class OnSortWidgetEvent extends WatchlistEvent {
-  final List<List<WatchListModel>> filteredusers;
+  final List<WatchListModel> filteredusers;
 
   final int currentTabIndex;
 

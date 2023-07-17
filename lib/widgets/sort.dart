@@ -7,7 +7,7 @@ import '../models/watchlist_model.dart';
 // ignore: must_be_immutable
 class SortWidget extends StatelessWidget {
   String? isSelected;
-  final List<List<WatchListModel>> allList;
+  final List<WatchListModel> allList;
   final TabController controller;
   SortWidget(
       {super.key,
@@ -36,7 +36,7 @@ class SortWidget extends StatelessWidget {
                   children: [
                     const Expanded(
                       child: Text(
-                        'SortWidget By',
+                        'Sort By',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

@@ -55,8 +55,15 @@ class WatchlistToggledState extends WatchlistState {
   });
 }
 
+class WatchlistChangeColorState extends WatchlistState {
+  String btnName;
+  WatchlistChangeColorState({
+    required this.btnName,
+  });
+}
+
 class FilterdState extends WatchlistState {
-  final List<List<WatchListModel>> filteredusers;
+  final List<WatchListModel> filteredusers;
   final int currentTabIndex;
   final String? selectedSort;
   FilterdState(

@@ -4,11 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:web_evaluation/bloc/bloc/internet/bloc/internet_bloc.dart';
 import 'package:web_evaluation/bloc/bloc/watchlist/watchlist_bloc.dart';
+import 'package:web_evaluation/constants/app_constants.dart';
 import 'package:web_evaluation/constants/singleton.dart';
 import 'package:web_evaluation/screens/overlay/overlay_screen.dart';
 import 'package:web_evaluation/widgets/logout.dart';
-
-import '../../constants/app_constants.dart';
 
 // ignore: must_be_immutable
 class DashBoardScreen extends StatefulWidget {
@@ -22,6 +21,7 @@ class DashBoardScreen extends StatefulWidget {
 class _DashBoardScreenState extends State<DashBoardScreen> {
   bool hover = false;
   bool isToggled = false;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<WatchlistBloc, WatchlistState>(
@@ -59,8 +59,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         body: Stack(
           children: [
             Scaffold(
+              key: SingletonScaffold().scaffoldKey,
               body: Padding(
-                key: SingletonScaffold().scaffoldKey,
                 padding: const EdgeInsets.only(left: 70),
                 child: widget.child,
               ),
@@ -98,11 +98,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 ));
               },
               child: SizedBox(
-                width: hover == true ? 200 : 70,
+                width: hover == true ? 170 : 70,
                 child: NavigationRail(
                   backgroundColor: deeppurple,
                   extended: hover,
-                  minExtendedWidth: 200,
+                  minExtendedWidth: 170,
                   indicatorColor: white30,
                   useIndicator: true,
                   destinations: [
