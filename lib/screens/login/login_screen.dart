@@ -1,5 +1,4 @@
 // import 'dart:js' as js;
-import 'dart:html' as html;
 import 'dart:js' as js;
 
 import 'package:flutter/material.dart';
@@ -21,20 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    // if (isRefreshCalled) {
-    //   _refreshScreen();
-    //   isRefreshCalled = false;
-    // }
-    // _refreshScreen();
-    js.context.callMethod('disableBackButton');
-  }
 
-  void _refreshScreen() {
-    // Call the window.location.reload() method to refresh the screen
-    if (isRefreshCalled) {
-      isRefreshCalled = false;
-      html.window.location.reload();
-    }
+    js.context.callMethod('disableBackButton');
   }
 
   @override
