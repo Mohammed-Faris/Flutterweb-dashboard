@@ -65,9 +65,9 @@ class _ChartDisplayScreenState extends State<ChartDisplayScreen> {
                         onPressed: () {
                           // SingletonScaffold().isBuyButtonActive = true;
                           SingletonScaffold().openEndDrawer();
-                          context
-                              .read<WatchlistBloc>()
-                              .add(WatchListToggled(false));
+                          // context
+                          //     .read<WatchlistBloc>()
+                          //     .add(WatchListToggled(false));
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: greencolor, // Background color

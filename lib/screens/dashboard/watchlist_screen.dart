@@ -70,6 +70,7 @@ class _WatchListScreenState extends State<WatchListScreen>
       } else if (state is WatchlistFilterState) {
         selectedcontactValue = state.selectedcontactValue;
         searchedlist = state.watchlistdata;
+        allList = state.watchlistdata;
       }
 
       return Row(
